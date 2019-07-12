@@ -1,0 +1,37 @@
+{{latToCheck}}
+<div class="row">
+  <div class="col-md-2" style="text-align: center">
+    <h3 style="color: white">Shapes</h3>
+    <ul style="list-style: none;padding: 1%">
+      <li *ngFor="let shape of allShapes">
+        <mat-expansion-panel (click)="changeShape(shape.id)">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{shape.name}}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-form-field style="max-width: 130px!important" >
+            <input matInput placeholder="Latitude" [(ngModel)]="latToCheck">
+          </mat-form-field>
+          <mat-form-field style="max-width: 130px!important" >
+            <input matInput placeholder="Longitude" [(ngModel)]="lngToCheck">
+          </mat-form-field>
+          <button mat-raised-button color="primary" (click)="checkIfPointInside()">Check</button>
+        </mat-expansion-panel>
+        <br>
+      </li>
+    </ul>
+  </div>
+  <div class="col-md-10">
+    <div #map style="width:100%;height:80vh"></div>
+  </div>
+</div>
+
+<hr/>
+<div style="text-align: center" *ngIf="saveEnabled">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Shape Name" [(ngModel)]="shapeName" style="color: white">
+  </mat-form-field>
+  &nbsp;
+  <button mat-raised-button color="primary" (click)="saveCoordinates()">SAVE</button>
+</div>
